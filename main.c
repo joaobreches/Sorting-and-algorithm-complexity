@@ -10,14 +10,15 @@ int main(){
     TAD t, a, d;
     clock_t time_a=0, all_time=0;
     int increment = 3;
+    float bubble_time = 0;
+    float better_b_time = 0;
+    float quick_time = 0;
+    float radix_time = 0;
+    float heap_time = 0;
 
     //We can work with random lists
     for(increment = 3 ; pow(10, increment) <= TAM; increment++){
         all_time = 0;
-        float bubble_time = 0;
-        float better_b_time = 0;
-        float quick_time = 0;
-        float radix_time = 0;
 
         for(int i=0; i<reps; i++){
 
@@ -90,7 +91,7 @@ int main(){
 
             time_a = clock(); //save the time
 
-            //QuickSortfunction
+            //radixSortfunction
             int n;
             Radix_sort(&t, n);
             all_time += clock() - time_a; 
@@ -100,21 +101,38 @@ int main(){
             destroy(&t); //free memory
             //radixSort ends
 
+            //HeapSort beggins
+            list_create(&t);
+            for(long j=0; j < pow(10,increment); j++){
+                add(&t, rand() % TAM);
+            }
+            //output(&t); //output all random elements
+
+            time_a = clock(); //save the time
+
+            //HeapSortfunction
+            int n;
+            heap_sort(&t);
+            all_time += clock() - time_a; 
+            heap_time= all_time; //saves the time used
+            all_time = 0;
+            //output(&t); //output the sorted elemenst
+            destroy(&t); //free memory
+            //HeapSort ends
+
         }
         printf("Input: %0.0f; ", pow(10,increment));
         printf("Time used on bubble-sort: %0.10f\n", (bubble_time / (float)reps)/ CLOCKS_PER_SEC);
         printf("Time used on better bubble-sort: %0.10f\n", (better_b_time / (float)reps)/ CLOCKS_PER_SEC);
         printf("Time used on quick-sort: %0.10f\n\n\n", (quick_time / (float)reps)/ CLOCKS_PER_SEC);
         printf("Time used on radix-sort: %0.10f\n\n\n", (radix_time / (float)reps)/ CLOCKS_PER_SEC);
+        printf("Time used on heap-sort: %0.10f\n\n\n", (heap_time / (float)reps)/ CLOCKS_PER_SEC);
     }
 
 
     //We will work with ascending lists
     for(increment = 3; pow(10, increment) <= TAM; increment++){
         all_time = 0;
-        float bubble_time = 0;
-        float better_b_time = 0;
-        float quick_time = 0;
 
         for(int i=0; i<reps; i++){
 
@@ -174,12 +192,52 @@ int main(){
             all_time = 0;
             //output(&t); //output the sorted elemenst
             destroy(&a); //free memory
+
+            //radixSort beggins
+            list_create(&t);
+            for(long j=0; j < pow(10,increment); j++){
+                add(&t, rand() % TAM);
+            }
+            //output(&t); //output all random elements
+
+            time_a = clock(); //save the time
+
+            //radixSortfunction
+            int n;
+            Radix_sort(&t, n);
+            all_time += clock() - time_a; 
+            radix_time= all_time; //saves the time used
+            all_time = 0;
+            //output(&t); //output the sorted elemenst
+            destroy(&t); //free memory
+            //radixSort ends
+
+            //HeapSort beggins
+            list_create(&t);
+            for(long j=0; j < pow(10,increment); j++){
+                add(&t, rand() % TAM);
+            }
+            //output(&t); //output all random elements
+
+            time_a = clock(); //save the time
+
+            //HeapSortfunction
+            int n;
+            heap_sort(&t);
+            all_time += clock() - time_a; 
+            heap_time= all_time; //saves the time used
+            all_time = 0;
+            //output(&t); //output the sorted elemenst
+            destroy(&t); //free memory
+            //HeapSort ends
         }
 
         printf("Input: %0.0f; ", pow(10,increment));
         printf("Time used on bubble-sort: %0.10f\n", (bubble_time / (float)reps)/ CLOCKS_PER_SEC);
         printf("Time used on better bubble-sort: %0.10f\n", (better_b_time / (float)reps)/ CLOCKS_PER_SEC);
         printf("Time used on quick-sort: %0.10f\n\n\n", (quick_time / (float)reps)/ CLOCKS_PER_SEC);
+        printf("Time used on radix-sort: %0.10f\n\n\n", (radix_time / (float)reps)/ CLOCKS_PER_SEC);
+        printf("Time used on heap-sort: %0.10f\n\n\n", (heap_time / (float)reps)/ CLOCKS_PER_SEC);
     }
 
     //Time to work with descending lists
@@ -248,12 +306,52 @@ int main(){
             //output(&d); //output the sorted elemenst
             destroy(&d); //free memory
 
+            //radixSort beggins
+            list_create(&t);
+            for(long j=0; j < pow(10,increment); j++){
+                add(&t, rand() % TAM);
+            }
+            //output(&t); //output all random elements
+
+            time_a = clock(); //save the time
+
+            //radixSortfunction
+            int n;
+            Radix_sort(&t, n);
+            all_time += clock() - time_a; 
+            radix_time= all_time; //saves the time used
+            all_time = 0;
+            //output(&t); //output the sorted elemenst
+            destroy(&t); //free memory
+            //radixSort ends
+
+            //HeapSort beggins
+            list_create(&t);
+            for(long j=0; j < pow(10,increment); j++){
+                add(&t, rand() % TAM);
+            }
+            //output(&t); //output all random elements
+
+            time_a = clock(); //save the time
+
+            //HeapSortfunction
+            int n;
+            heap_sort(&t);
+            all_time += clock() - time_a; 
+            heap_time= all_time; //saves the time used
+            all_time = 0;
+            //output(&t); //output the sorted elemenst
+            destroy(&t); //free memory
+            //HeapSort ends
+
         }
 
         printf("Input: %0.0f; ", pow(10,increment));
         printf("Time used on bubble-sort: %0.10f\n", (bubble_time / (float)reps)/ CLOCKS_PER_SEC);
         printf("Time used on better bubble-sort: %0.10f\n", (better_b_time / (float)reps)/ CLOCKS_PER_SEC);
         printf("Time used on quick-sort: %0.10f\n\n\n", (quick_time / (float)reps)/ CLOCKS_PER_SEC);
+        printf("Time used on radix-sort: %0.10f\n\n\n", (radix_time / (float)reps)/ CLOCKS_PER_SEC);
+        printf("Time used on heap-sort: %0.10f\n\n\n", (heap_time / (float)reps)/ CLOCKS_PER_SEC);
     }
    
 

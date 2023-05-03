@@ -143,8 +143,52 @@ void Radix_sort(TAD *t, int n){
   
 }
 
+void max_heapify(TAD *t, int father, int n){
+    int son = father*2;
+    int aux;
+    if (son > n) return;
+    if (t->element[son] > t->element[father] || (son + 1 <= n && t->element[son + 1] > t->element[father]) ){
+        if (son + 1 <= n && t->element[son + 1] > t->element[son]){
+            aux = t->element[father];
+            t->element[father] = t->element[son + 1];
+            t->element[son + 1] = aux;
+       } else {
+                aux = t->element[father];
+                t->element[father] = t->element[son];
+                t->element[son] = aux;
+        }
+    }
+}
+
+void min_heapify(TAD *t, int father, int n){
+    int son = father*2;
+    int aux;
+    if (son > n) return;
+    if (t->element[son] < t->element[father] || (son + 1 <= n && t->element[son + 1] < t->element[father] )){
+        if (son + 1 <= n && t->element[son + 1] < t->element[son]){
+            aux = t->element[father];
+            t->element[father] = t->element[son + 1];
+            t->element[son + 1] = aux;
+           } else {
+                aux = t->element[father];
+                t->element[father] = t->element[son];
+                t->element[son] = aux;
+            }
+        }
+    }
+
+void heap_sort(TAD *t){
+    elem aux;
+    
+    for (int i=(int)(t->size/2) - 1; i >= 1; i--){
+        max_heapify(t, i, t->size);
+    }
+    aux = t->element[0];
+    t->element[0] = t->element[t->size-1];
+    t->element[t->size-1] = aux;
 
 
-
+        
+}
 
 
